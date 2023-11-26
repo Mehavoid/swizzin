@@ -49,12 +49,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.console = component.get("ConsoleUI")
-        if len(args) == 0:
+        if not args:
             self.console.write(self.usage)
             return
-        if len(args) > 0 and args[0].lower() == '*':
+        if args and args[0].lower() == '*':
             args = [""]
-            
+
         torrent_ids = []
         for arg in args:
             torrent_ids.extend(self.console.match_torrent(arg))
